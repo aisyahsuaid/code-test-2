@@ -1,0 +1,31 @@
+import re
+
+# adding html tags
+print("<!DOCTYPE html>")
+print("<html lang=\"en\">")
+print(" <head>")
+print(" </head>")
+print(" <body>")
+
+text = ""
+
+# reading text file
+with open("example2.txt") as f:
+    text = f.read()
+
+# cleaning the data
+text = text.replace("http", " http")
+text = text.replace(" ,", ",")
+text = text.replace("  ", " ")
+
+# adding html tags
+text = text.replace("http", "\n   <a href = \"http")
+text = text.replace("#/", "#/\">\n")
+text = text.replace("*", "\n   <ul>\n    <li>", 1)
+text = ' </li>\n   </ul>'.join(text.rsplit(';', 1))
+text = text.replace("*", "\n    <li>")
+text = text.replace(";", " </li>")
+
+print("  <p>", text, "\n  </p>")
+print(" </body>")
+print("</html>")
